@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jashn-e-Shaadi | Muzammil & Sana</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@600;700;900&family=Noto+Nastaliq+Urdu:wght@500;700&family=Rozha+One&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-night: #08090e;
+            --card-glass: rgba(18, 20, 29, 0.90);
+            --gold-bright: #ffd977;
+            --gold-core: #dfad43;
+            --gold-subtle: rgba(223, 173, 67, 0.25);
+            --pure-gold-glow: 0 0 25px rgba(255, 217, 119, 0.45);
+            --text-main: #fcf9f2;
+            --text-dim: #c5c1b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-night);
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(223, 173, 67, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 10% 85%, rgba(68, 51, 122, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(223, 173, 67, 0.1) 0%, transparent 50%);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Flower Petals & Dust Canvas */
+        #petalCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        .top-bar {
+            position: relative;
+            width: 100%;
+            max-width: 530px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 16px 8px;
+            z-index: 99;
+        }
+
+        .bar-btn {
+            background: rgba(18, 20, 29, 0.95);
+            border: 1px solid var(--gold-core);
+            color: var(--gold-bright);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 530px;
+            margin: 0 auto;
+            padding: 10px 16px 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hanging-lamp {
+            display: inline-block;
+            font-size: 2.2rem;
+            color: var(--gold-bright);
+            text-shadow: 0 0 20px rgba(255, 217, 119, 0.8);
+            transform-origin: top center;
+            animation: lanternSwing 3.6s ease-in-out infinite alternate;
+            margin-bottom: 5px;
+        }
+
+        @keyframes lanternSwing {
+            0% { transform: rotate(-8deg); }
+            100% { transform: rotate(8deg); }
+        }
+
+        .card-container {
+            position: relative;
+            border-radius: 28px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--gold-bright), transparent 40%, var(--gold-core) 60%, transparent 80%, var(--gold-bright));
+            background-size: 300% 300%;
+            animation: borderRun 8s ease infinite;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(223, 173, 67, 0.2);
+        }
+
+        @keyframes borderRun {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .wedding-card {
+            background: var(--card-glass);
+            border-radius: 26px;
+            padding: 35px 20px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-hero-header {
+            margin-bottom: 10px;
+        }
+
+        .grand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 0%, var(--gold-bright) 45%, var(--gold-core) 85%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--pure-gold-glow);
+            display: inline-block;
+        }
+
+        .grand-subtitle {
+            font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
+            font-size: 1.7rem;
+            color: var(--gold-bright);
+            text-shadow: var(--pure-gold-glow);
+            margin-top: -3px;
+            direction: rtl;
+        }
+
+        .divider-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            color: var(--gold-core);
+            margin: 12px 0 16px;
+        }
+        .divider-ornament::before, .divider-ornament::after {
+            content: "";
+            height: 1px;
+            width: 55px;
+            background: linear-gradient(90deg, transparent, var(--gold-core), transparent);
+        }
+
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 2.1rem;
+            color: var(--gold-bright);
+            margin: 6px 0 18px;
+            text-shadow: 0 0 18px rgba(255, 217, 119, 0.6);
+        }
+
+        .intro-dua {
+            font-size: 0.88rem;
+            color: #ded8cb;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 1px dashed var(--gold-subtle);
+            border-bottom: 1px dashed var(--gold-subtle);
+            padding: 14px 12px;
+            margin: 14px 0 24px;
+            line-height: 1.8;
+            border-radius: 6px;
+        }
+
+        .couple-wrapper {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .person-card {
+            background: linear-gradient(145deg, rgba(223, 173, 67, 0.1), rgba(10, 12, 18, 0.8));
+            border: 1px solid var(--gold-subtle);
+            border-radius: 20px;
+            padding: 18px 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .person-name {
+            font-family: 'Rozha One', 'Noto Nastaliq Urdu', serif;
+            font-size: 2rem;
+            color: var(--gold-bright);
+            text-shadow: 0 0 15px rgba(223, 173, 67, 0.6);
+            margin-bottom: 3px;
+        }
+
+        .person-parentage {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+        }
+
+        .village-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+            font-size: 0.76rem;
+            color: var(--gold-core);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .connector-circle {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-core), var(--gold-bright));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #08090e;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 0 20px rgba(223, 173, 67, 0.7);
+            animation: pulseKnot 2.2s infinite ease-in-out;
+        }
+
+        @keyframes pulseKnot {
+            0% { transform: scale(0.95); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(0.95); }
+        }
+
+        .countdown-wrap {
+            margin: 26px 0 22px;
+            padding: 20px 14px;
+            background: rgba(10, 11, 16, 0.7);
+            border-radius: 20px;
+            border: 1px solid var(--gold-subtle);
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.6);
+        }
+
+        .countdown-title {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-core);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-box {
+            background: linear-gradient(180deg, rgba(223, 173, 67, 0.16), rgba(0,0,0,0.4));
+            padding: 12px 4px;
+            border-radius: 14px;
+            border: 1px solid var(--gold-subtle);
+        }
+
+        .time-num {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--gold-bright);
+            display: block;
+            text-shadow: 0 0 12px rgba(223, 173, 67, 0.5);
+        }
+
+        .time-lbl {
+            font-size: 0.65rem;
+            color: #aba69a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .program-card {
+            margin: 12px 0;
+            padding: 15px 16px;
+            background: rgba(255, 255, 255, 0.025);
+            border-radius: 16px;
+            border-left: 3px solid var(--gold-core);
+            text-align: left;
+        }
+
+        .program-card h4 {
+            color: var(--gold-bright);
+            font-size: 0.96rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .program-card p {
+            font-size: 0.88rem;
+            color: #f1ede4;
+            margin-left: 26px;
+            line-height: 1.55;
+        }
+
+        .hosts-section {
+            margin-top: 26px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gold-subtle);
+            font-size: 0.84rem;
+            color: #b0aba0;
+        }
+
+        .hosts-names {
+            color: var(--gold-bright);
+            font-weight: 700;
+            font-size: 0.98rem;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .developer-box {
+            margin-top: 30px;
+            padding: 24px 16px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(223, 173, 67, 0.08), rgba(0, 0, 0, 0.5));
+            border: 1px solid var(--gold-subtle);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .dev-badge-text {
+            font-size: 0.94rem;
+            color: #dcd7cc;
+        }
+
+        .dev-badge-text strong {
+            color: var(--gold-bright);
+            font-size: 1.08rem;
+            letter-spacing: 0.8px;
+        }
+
+        .instagram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 28px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #ffffff;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 6px 25px rgba(220, 39, 67, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instagram-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-25deg);
+            animation: btnSweep 3.2s infinite;
+        }
+
+        @keyframes btnSweep {
+            0% { left: -120%; }
+            40% { left: 160%; }
+            100% { left: 160%; }
+        }
+
+        .footer-note {
+            margin-top: 22px;
+            font-size: 0.78rem;
+            color: #83858f;
+        }
+
+        .urdu-mode {
+            font-family: 'Noto Nastaliq Urdu', serif !important;
+            direction: rtl;
+            line-height: 2.2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Falling Petals & Glow Canvas -->
+    <canvas id="petalCanvas"></canvas>
+
+    <div class="top-bar">
+        <button class="bar-btn" id="langToggleBtn" onclick="toggleLanguage()">
+            <i class="fa-solid fa-language"></i> <span id="langBtnText">اردو میں دیکھیں</span>
+        </button>
+        <button class="bar-btn" id="musicBtn" onclick="toggleAudio()">
+            <i class="fa-solid fa-music" id="musicIcon"></i> <span id="musicText">Music</span>
+        </button>
+    </div>
+
+    <audio id="weddingAudio" loop preload="auto">
+        <source src="music.wav" type="audio/wav">
+    </audio>
+
+    <div class="container">
+        <div class="card-container">
+            <div class="wedding-card">
+                
+                <div class="hanging-lamp">
+                    <i class="fa-solid fa-kaaba"></i>
+                </div>
+
+                <div class="main-hero-header">
+                    <div class="grand-title" id="t-main-head">JASHN-E-SHAADI</div>
+                    <div class="grand-subtitle" id="t-sub-head">جشنِ شادی</div>
+                </div>
+
+                <div class="divider-ornament">
+                    <i class="fa-solid fa-star-and-crescent"></i>
+                </div>
+
+                <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+
+                <div class="intro-dua" id="t-dua">
+                    "मासूम सी बेटी को जुदा कर रहा हूँ मैं, हर वक्त खुश रहे ये दुआ कर रहा हूँ मैं,<br>
+                    अल्लाह तू गवाह है वरना मेरी हैसियत है क्या, एक फर्ज़ था मुझ पर ये अदा कर रहा हूँ मैं"
+                </div>
+
+                <div class="couple-wrapper">
+                    
+                    <div class="person-card">
+                        <div class="person-name" id="t-groom-name">शेख मुजम्मिल</div>
+                        <div class="person-parentage" id="t-groom-parent">इब्ने शेख साबिर शेख लतीफ (मरहूम)</div>
+                        <div class="village-badge" id="t-groom-place">
+                            <i class="fa-solid fa-location-dot"></i> अक्कलकुवा, जि. बुलडाणा
+                        </div>
+                    </div>
+
+                    <div class="connector-circle" id="t-connector">हमराह</div>
+
+                    <div class="person-card">
+                        <div class="person-name" id="t-bride-name">सना कौसर</div>
+                        <div class="person-parentage" id="t-bride-parent">बिन्त शेख उमर इब्ने मरहूम शेख समद</div>
+                        <div class="village-badge" id="t-bride-place">
+                            <i class="fa-solid fa-location-dot"></i> जनता नगर, खामगांव, जि. बुलडाणा
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="countdown-wrap">
+                    <div class="countdown-title" id="t-countdown-title">
+                        <i class="fa-regular fa-clock"></i> मुबारक घड़ी में बाकी वक्त
+                    </div>
+                    <div class="timer-grid">
+                        <div class="time-box">
+                            <span class="time-num" id="days">00</span>
+                            <span class="time-lbl" id="t-lbl-days">Days</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-num" id="hours">00</span>
+                            <span class="time-lbl" id="t-lbl-hours">Hours</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-num" id="minutes">00</span>
+                            <span class="time-lbl" id="t-lbl-mins">Mins</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-num" id="seconds">00</span>
+                            <span class="time-lbl" id="t-lbl-secs">Secs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <h4 id="t-h-date"><i class="fa-regular fa-calendar-check"></i> तारीख़ व दिन:</h4>
+                    <p id="t-p-date">इन्शा अल्लाह बतारीख <strong>15 नवम्बर 2026</strong><br>(बरोज़ इतवार / 5 जमादी-उल-आख़िर 1448 हिजरी)</p>
+                </div>
+
+                <div class="program-card">
+                    <h4 id="t-h-time"><i class="fa-solid fa-hourglass-start"></i> वक़्त-ए-अक़्द (निकाह):</h4>
+                    <p id="t-p-time">सुबह <strong>10:30 बजे</strong></p>
+                </div>
+
+                <div class="program-card">
+                    <h4 id="t-h-dawat"><i class="fa-solid fa-utensils"></i> तआम (दावत):</h4>
+                    <p id="t-p-dawat">तआम बाद अज़ अक़्द (खाना निकाह के तुरंत बाद)</p>
+                </div>
+
+                <div class="program-card">
+                    <h4 id="t-h-venue"><i class="fa-solid fa-location-dot"></i> बरमकान (विवाह स्थल):</h4>
+                    <p id="t-p-venue">शेख उमर इब्ने मरहूम शेख समद, जनता नगर, खामगांव, जि. बुलडाणा</p>
+                </div>
+
+                <div class="hosts-section">
+                    <div id="t-host-title">अहक़र:</div>
+                    <div class="hosts-names" id="t-host-names">शेख उमर इब्ने मरहूम शेख समद</div>
+                    <div style="margin-top: 5px; font-size: 0.8rem;" id="t-family">जुमला शेख फैमिली अज़ीज़ व अकारिब</div>
+                </div>
+
+                <div class="developer-box">
+                    <p class="dev-badge-text">Website created by <strong>Sakib Developer</strong></p>
+                    <a href="https://instagram.com/__sakib_009_" target="_blank" rel="noopener noreferrer" class="instagram-btn">
+                        <i class="fa-brands fa-instagram"></i> Follow on Instagram
+                    </a>
+                </div>
+
+                <p class="footer-note" id="t-footer">तक़रीब में आपकी शिरकत बाइस-ए-मुसर्रत होगी</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Slow Realistic Falling Rose Petals Engine
+        const canvas = document.getElementById('petalCanvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class RosePetal {
+            constructor() {
+                this.reset(true);
+            }
+            reset(initial = false) {
+                this.x = Math.random() * canvas.width;
+                this.y = initial ? Math.random() * canvas.height : -20;
+                this.size = Math.random() * 8 + 8; // petal size
+                this.speedY = Math.random() * 0.9 + 0.6; // slow floating fall
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.angle = Math.random() * Math.PI * 2;
+                this.angularSpeed = (Math.random() - 0.5) * 0.02;
+                this.swaySpeed = Math.random() * 0.02 + 0.01;
+                this.swayDistance = Math.random() * 40 + 20;
+                this.initialX = this.x;
+                this.swayAngle = Math.random() * Math.PI * 2;
+                
+                // Wedding Rose Shades (Crimson, Deep Velvet Red, Warm Rose Gold)
+                const colors = [
+                    'rgba(224, 49, 79, ',
+                    'rgba(186, 24, 52, ',
+                    'rgba(240, 106, 126, ',
+                    'rgba(212, 175, 55, '
+                ];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = Math.random() * 0.4 + 0.5;
+            }
+            update() {
+                this.y += this.speedY;
+                this.swayAngle += this.swaySpeed;
+                this.x = this.initialX + Math.sin(this.swayAngle) * this.swayDistance;
+                this.angle += this.angularSpeed;
+
+                if (this.y > canvas.height + 25) {
+                    this.reset(false);
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+
+                // Curved Natural Rose Petal Shape
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(-this.size / 2, -this.size / 2, -this.size, this.size / 3, 0, this.size);
+                ctx.bezierCurveTo(this.size, this.size / 3, this.size / 2, -this.size / 2, 0, 0);
+
+                ctx.fillStyle = this.color + this.opacity + ')';
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+                ctx.shadowBlur = 5;
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        // Spawn 32 gentle falling petals
+        for (let i = 0; i < 32; i++) {
+            petals.push(new RosePetal());
+        }
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animatePetals);
+        }
+        animatePetals();
+
+        // Dual Language Content
+        let currentLang = 'hi';
+
+        const content = {
+            hi: {
+                langBtnText: "اردو میں دیکھیں",
+                mainHead: "JASHN-E-SHAADI",
+                subHead: "जश्न-ए-शादी",
+                dua: `"मासूम सी बेटी को जुदा कर रहा हूँ मैं, हर वक्त खुश रहे ये दुआ कर रहा हूँ मैं,<br>अल्लाह तू गवाह है वरना मेरी हैसियत है क्या, एक फर्ज़ था मुझ पर ये अदा कर रहा हूँ मैं"`,
+                groomName: "शेख मुजम्मिल",
+                groomParent: "इब्ने शेख साबिर शेख लतीफ (मरहूम)",
+                groomPlace: '<i class="fa-solid fa-location-dot"></i> अक्कलकुवा, जि. बुलडाणा',
+                connector: "हमराह",
+                brideName: "सना कौसर",
+                brideParent: "बिन्त शेख उमर इब्ने मरहूम शेख समद",
+                bridePlace: '<i class="fa-solid fa-location-dot"></i> जनता नगर, खामगांव, जि. बुलडाणा',
+                countdownTitle: '<i class="fa-regular fa-clock"></i> मुबारक घड़ी में बाकी वक्त',
+                lblDays: "Days", lblHours: "Hours", lblMins: "Mins", lblSecs: "Secs",
+                hDate: '<i class="fa-regular fa-calendar-check"></i> तारीख़ व दिन:',
+                pDate: 'इन्शा अल्लाह बतारीख <strong>15 नवम्बर 2026</strong><br>(बरोज़ इतवार / 5 जमादी-उल-आख़िर 1448 हिजरी)',
+                hTime: '<i class="fa-solid fa-hourglass-start"></i> वक़्त-ए-अक़्द (निकाह):',
+                pTime: 'सुबह <strong>10:30 बजे</strong>',
+                hDawat: '<i class="fa-solid fa-utensils"></i> तआम (दावत):',
+                pDawat: 'तआम बाद अज़ अक़्द (खाना निकाह के तुरंत बाद)',
+                hVenue: '<i class="fa-solid fa-location-dot"></i> बरमकान (विवाह स्थल):',
+                pVenue: 'शेख उमर इब्ने मरहूम शेख समद, जनता नगर, खामगांव, जि. बुलडाणा',
+                hostTitle: 'अहक़र:',
+                hostNames: 'शेख उमर इब्ने मरहूम शेख समद',
+                family: 'जुमला शेख फैमिली अज़ीज़ व अकारिब',
+                footer: 'तक़रीब में आपकी शिरकत बाइस-ए-मुसर्रत होगी'
+            },
+            ur: {
+                langBtnText: "हिंदी में देखें",
+                mainHead: "جشنِ شادی",
+                subHead: "محفلِ عقد",
+                dua: `معصوم سی بیٹی کو جدا کر رہا ہوں میں، ہر وقت خوش رہے یہ دعا کر رہا ہوں میں،<br>اللہ تو گواہ ہے ورنہ میری حیثیت ہے کیا، ایک فرض تھا مجھ پر یہ ادا کر رہا ہوں میں`,
+                groomName: "شیخ مزمل",
+                groomParent: "ابنِ شیخ صابر شیخ لطیف (مرحوم)",
+                groomPlace: '<i class="fa-solid fa-location-dot"></i> اکل کنواں، ضلع بُلدھانہ',
+                connector: "ہمراہ",
+                brideName: "ثنا کوثر",
+                brideParent: "بنتِ شیخ عمر ابنِ مرحوم شیخ صمد",
+                bridePlace: '<i class="fa-solid fa-location-dot"></i> جنتا نگر، خامگاؤں، ضلع بُلدھانہ',
+                countdownTitle: '<i class="fa-regular fa-clock"></i> مبارک گھڑی میں باقی وقت',
+                lblDays: "دن", lblHours: "گھنٹے", lblMins: "منٹ", lblSecs: "سیکنڈ",
+                hDate: '<i class="fa-regular fa-calendar-check"></i> تاریخ و دن:',
+                pDate: 'انشاء اللہ بتاریخ <strong>15 نومبر 2026</strong><br>(بروز اتوار / مطابق ۵ جمادی الآخر ۱۴۴۸ھ)',
+                hTime: '<i class="fa-solid fa-hourglass-start"></i> بوقت:',
+                pTime: 'صبح <strong>10:30 بجے</strong>',
+                hDawat: '<i class="fa-solid fa-utensils"></i> طعام:',
+                pDawat: 'طعام بعد از عقد',
+                hVenue: '<i class="fa-solid fa-location-dot"></i> برمکان:',
+                pVenue: 'شیخ عمر ابنِ مرحوم شیخ صمد، جنتا نگر، خامگاؤں، ضلع بُلدھانہ',
+                hostTitle: 'الداعی:',
+                hostNames: 'شیخ عمر ابنِ مرحوم شیخ صمد',
+                family: 'جملہ شیخ فیملی عزیزو اقارب',
+                footer: 'تقریب میں آپ کی شرکت باعثِ مسرت ہوگی'
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'hi' ? 'ur' : 'hi';
+            const data = content[currentLang];
+
+            document.getElementById('langBtnText').innerText = data.langBtnText;
+            document.getElementById('t-main-head').innerText = data.mainHead;
+            document.getElementById('t-sub-head').innerText = data.subHead;
+            document.getElementById('t-dua').innerHTML = data.dua;
+            document.getElementById('t-groom-name').innerHTML = data.groomName;
+            document.getElementById('t-groom-parent').innerHTML = data.groomParent;
+            document.getElementById('t-groom-place').innerHTML = data.groomPlace;
+            document.getElementById('t-connector').innerHTML = data.connector;
+            document.getElementById('t-bride-name').innerHTML = data.brideName;
+            document.getElementById('t-bride-parent').innerHTML = data.brideParent;
+            document.getElementById('t-bride-place').innerHTML = data.bridePlace;
+            document.getElementById('t-countdown-title').innerHTML = data.countdownTitle;
+            
+            document.getElementById('t-lbl-days').innerText = data.lblDays;
+            document.getElementById('t-lbl-hours').innerText = data.lblHours;
+            document.getElementById('t-lbl-mins').innerText = data.lblMins;
+            document.getElementById('t-lbl-secs').innerText = data.lblSecs;
+
+            document.getElementById('t-h-date').innerHTML = data.hDate;
+            document.getElementById('t-p-date').innerHTML = data.pDate;
+            document.getElementById('t-h-time').innerHTML = data.hTime;
+            document.getElementById('t-p-time').innerHTML = data.pTime;
+            document.getElementById('t-h-dawat').innerHTML = data.hDawat;
+            document.getElementById('t-p-dawat').innerHTML = data.pDawat;
+            document.getElementById('t-h-venue').innerHTML = data.hVenue;
+            document.getElementById('t-p-venue').innerHTML = data.pVenue;
+
+            document.getElementById('t-host-title').innerHTML = data.hostTitle;
+            document.getElementById('t-host-names').innerHTML = data.hostNames;
+            document.getElementById('t-family').innerHTML = data.family;
+            document.getElementById('t-footer').innerHTML = data.footer;
+
+            const card = document.querySelector('.wedding-card');
+            if (currentLang === 'ur') {
+                card.classList.add('urdu-mode');
+            } else {
+                card.classList.remove('urdu-mode');
+            }
+        }
+
+        const weddingDate = new Date("Nov 15, 2026 10:30:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("t-countdown-title").innerText = "Mubarak ho! Nikah Ka Waqt Ho Gaya!";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+        }, 1000);
+
+        let isPlaying = false;
+        const audio = document.getElementById('weddingAudio');
+        const musicIcon = document.getElementById('musicIcon');
+        const musicText = document.getElementById('musicText');
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.className = "fa-solid fa-music";
+                musicText.innerText = "Music";
+            } else {
+                audio.play().catch(e => console.log('Autoplay permissions'));
+                musicIcon.className = "fa-solid fa-pause";
+                musicText.innerText = "Pause";
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
